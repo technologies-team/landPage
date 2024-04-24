@@ -18,14 +18,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .standard-input-filed {
-    background-color: transparent;
-    border: 1px solid #ffffff;
-    height: 50px;
     width: 95%;
-    border-radius: 5px;
     margin: 5px;
-    color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
-
-
+    color: var(--primary-text);
+    height: 55px;
+    border: 3px solid var(--primary-text);
+    border-radius: 13px;
 }
 </style>

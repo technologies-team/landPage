@@ -16,18 +16,14 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: "Lexend Deca", Sans-serif;
-  ;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  margin-top: 60px;
+:root {
+  --main-color: #3D5472;
+  --second-color: #85c3cc;
+  --third-color: #B2cc4D;
+  --primary-text:#828385;
+  --light-color:#ffffff
 }
-
-body {
-  color: #ffffff;
-  background-color: black !important;
-
+body{
+  color:var(--primary-text)
 }
 </style>

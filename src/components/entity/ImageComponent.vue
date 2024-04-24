@@ -1,5 +1,5 @@
 <template>
-  <img v-bind:src=src class=" " alt="">
+  <img v-bind:src=src class=" " :width=width :height=height alt="">
 
 </template>
 
@@ -8,6 +8,8 @@ export default {
   name: 'ImageComponent',
   props: {
     src: String,
+    width: String,
+    height: String,
 
   }
 }

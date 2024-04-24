@@ -1,68 +1,54 @@
 <template>
   <div>
-    <section class="section">
-      <div class="row">
-        <div class="col-md-6">
-          <h1 class="head-title">
-            {{ msg }}
-          </h1>
-          <div class="title-desc">
-            Mobile Apps
-          </div>
-          <div class="description">
-            We are a 25 years old mobile app development company in Dubai, dedicated to creating simple, easy to use and user-friendly apps. Get 10x more conversions for your business now and let your user fall in love with you through the app!
-
-            .
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex flex-row">
-            <InputField fieldName="name" placeholder="name" />
-            <InputField fieldName="email" placeholder="email" />
-          </div>
+    <section >
+      <div style="display: none">
+        <FiveSection :slides="slides" :interval="3000" />
 
 
-         <SelectorComponent></SelectorComponent>
-          <div>
-            <TextArea fieldName="message" placeholder="Message" />
-
-          </div>
-          <div class="row pr-30">
-            <div class=" col-md-1"></div><button class="submit-button col-md-3 mt-3">submit</button>
-          </div>
-        </div>
       </div>
 
-    </section>
-    <section >
+      <MainSection :slides="slides" :interval="3000" Head="Mobile Apps"
+      description="We are a 25 years old mobile app development company in Dubai, dedicated to creating simple, easy to use and user-friendly apps. Get 10x more conversions for your business now and let your user fall in love with you through the app!."
+      />
       <SecondSection :slides="slides" :interval="3000" />
       <ThirdSection :slides="slides" :interval="3000" />
       <FourthSection :slides="slides" :interval="3000" />
-      <FiveSection :slides="slides" :interval="3000" />
+      <SixSection :slides="slides" :interval="3000" />
+      <SevenSection :slides="slides" :interval="3000" />
+      <EightSection :slides="slides" :interval="3000" />
+      <NineSection :slides="slides" :interval="3000" />
+      <TenSection :slides="slides" :interval="3000" />
+      <FirstSection  :slides="slides" :interval="3000"/>
+      <FQASection :slides="slides" :interval="3000" />
+
     </section>
   </div>
 </template>
 
 <script>
-import InputField from './InputField.vue'
-import TextArea from './TextArea.vue'
+
 import SecondSection from './sections/SecondSection.vue';
+import MainSection from './sections/MainSection.vue';
 import ThirdSection from './sections/ThirdSection.vue';
 import FourthSection from './sections/FourthSection.vue';
+import SixSection from './sections/SixSection.vue';
+import SevenSection from './sections/SevenSection.vue';
+import NineSection from './sections/NineSection.vue';
 import FiveSection from './sections/FiveSection.vue';
-import SelectorComponent from './entity/SelectorComponent.vue';
-
-
+import FQASection from './sections/FQASection.vue';
+import EightSection from './sections/EightSection.vue';
+import TenSection from "@/components/sections/TenSection.vue";
+import FirstSection from "@/components/sections/FirstSection.vue";
 export default {
   name: 'LandPage',
   props: {
     msg: String,
   },
-
-
   components: {
-    InputField,
-    TextArea,SecondSection,ThirdSection,SelectorComponent,FourthSection,FiveSection
+    FirstSection,
+    TenSection,
+    MainSection,
+    SecondSection,ThirdSection,FourthSection,FiveSection,SixSection,SevenSection,FQASection,EightSection,NineSection
   },
 
   data() {
@@ -74,18 +60,15 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
 
-
-
-.section {
-  animation: scroll 20s linear infinite;
-  max-width: 1300px;
-  margin: auto;
-  color:#ffffff;
+.container{
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
+
+
 .slideTrack {
   width: calc(150px* 20);
   display: flex;
@@ -129,22 +112,7 @@ text-align: start;
 
 
 
-.submit-button:hover {
-  transform: translateY(-6px);
-  transition-duration: 0.6s;
-}
 
-.submit-button {
-  border: none;
-  cursor: pointer;
-  border-radius: 42px;
-
-  height: 40px;
-  background-image: linear-gradient(90deg, #5ce4ff 0%, #e5c349 100%);
-
-  ;
-
-}
 
 h3 {
   margin: 40px 0 0;

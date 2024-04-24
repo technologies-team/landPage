@@ -1,7 +1,7 @@
 <template>
-    <buuton v-bind:name=name class=" btn btn-primary  btn-standard m-1 ">
+    <button v-bind:name=name class=" btn btn-primary  btn-standard m-1 ">
         {{ text }}
-    </buuton>
+    </button>
 
 </template>
 
@@ -18,8 +18,8 @@ export default {
 
 <style scoped>
 .btn-standard {
-    height: 55px;
-    background-color: #f32f53;
+    min-height: 55px;
+    background-color: var(--second-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +29,7 @@ export default {
     border-radius: 10px;
     border: unset;
     font-weight: 700;
+  width: 100%;
 
 }
 </style>

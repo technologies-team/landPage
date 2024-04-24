@@ -1,11 +1,10 @@
 <template>
   <div class="row card-content  p-1">
 
-  <div class="col-lg-10  ">
+  <div class="col-lg-6  ">
     <h3 class="h-title font18 white fw700">{{title}}</h3>
-    <p class="font12 white fw400 p-description"> {{description}}</p>
   </div>
-    <div class="col-lg-2" >
+    <div class="col-lg-6" >
       <img v-bind:src=url  alt=""/>
     </div>
 
@@ -34,15 +33,16 @@ export default {
 }
 .card-content{
   justify-content: center;align-items: center;
-  background-color: #000;
-  border: 2px solid #3d3d3d;
+  background-color: var(--main-color);
+  border: 2px solid var(--main-color);
   border-radius: 15px;
-  height: 201px;
+  height: 100px;
   text-align: start;
+  color:var(--light-color)
 ;
   transition: all 1s ease-out;
 }
 .card-content:hover{
-  background-color: #f32f53;
+  background-color: var(--second-color);
 }
 </style>

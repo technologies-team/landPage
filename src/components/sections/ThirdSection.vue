@@ -1,16 +1,16 @@
 <template>
   <div >
-    <section class="section">
+    <section class="container">
       <div class="row  ">
         <div class="col-md-12">
-          <h3 class="white f-30 f-700 center">
+          <h3 class="white f-30 f-700 text-center">
             Our Expert Mobile App Development Services In Dubai          </h3>
-          <h2 class="white font50 f-700 cente">
+          <h2 class="white font50 f-700 text-center">
             Mobile App Development Services
           </h2>
-          <p class=" white font16 f-400 center">ur mobile app development agency in the UAE offers one of a kind services. Here's what we offer:</p>
+          <p class=" white font16 f-400 text-center">ur mobile app development agency in the UAE offers one of a kind services. Here's what we offer:</p>
           <div class="align-items-center gx-5 d-none d-lg-flex row ">
-            <div class="col-md-4 mb-3 cards-section" v-for="(item, index) in imgItems" :key="index">
+            <div class="col-md-2 mb-3 cards-section" v-for="(item, index) in imgItems" :key="index">
               <CardComponent :title=item.title :description="item.description" :url="item.thumbnail" />
             </div>
           </div>

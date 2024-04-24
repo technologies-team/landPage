@@ -1,3 +1,4 @@
+
 <template>
     <b-col>
         <textarea type="text" v-bind:name=fieldName v-bind:placeholder=placeholder class="standard-text-area-filed">
@@ -18,3 +19,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.standard-text-area-filed{
+  border: 3px solid var(--primary-text);
+  border-radius: 13px;
+}
+</style>

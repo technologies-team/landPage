@@ -1,11 +1,23 @@
 <template>
-    <div >
-        <section class="section">
-            <div class="row">
+    <div>
+        <section class="container">
+            <div class="row ">
+              <carousel :items-to-show="3" :wrapAround="true" :transition="3000" :autoplay="1">
+                <slide v-for="(item, index) in imgItems" :key="index">
+                  <div class="col-md-2 mb-3 cards-section">
+                    <Image width="150pxs" height="150px" :title=item.title :description="item.description" :src="item.thumbnail" />
+                  </div>
+                </slide>
+
+              </carousel>
+              <h1 class="head-title text-center">
+                Turn Your App Idea Into An App
+              </h1>
+              <div>
+
+              </div>
+
                 <div class="col-md-12">
-                    <h1 class="head-title">
-                        Turn Your App Idea Into An App
-                    </h1>
                     <div class="row">
                         <div class="col-md-3 px-0">
                             <InputField fieldName="name" placeholder="name" />
@@ -29,14 +41,59 @@
 <script>
 import InputField from './../InputField.vue'
 import ButtonComponent from './../entity/ButtonComponent.vue'
+import Image from "@/components/entity/ImageComponent.vue";
+import { Carousel, Slide } from 'vue3-carousel'
+
 export default {
     name: 'SecondSection',
     props: {
         msg: String,
     },
     components: {
+      Carousel, Slide, Image,
+
         InputField, ButtonComponent
     },
+  data(){
+    return{
+      imgItems: [
+        {title:"Android",
+          thumbnail: require('../../assets/slides/badge.png'),
+          description: 'We take Android app development to the next level by following a comprehensive approach, from ideation to launch.'
+        },
+        {title:"IOS",
+          thumbnail: require('../../assets/slides/073e304b0da1a3516e43c41ee0e53ed1.png'),
+          description: 'We bring your iOS app ideas to life by using our comprehensive approach to development, combining UI/UX app design.'
+        },
+        {
+          title:"Flutter",
+          thumbnail: require('../../assets/slides/mad_reports_5e254d641d2281579502948.webp'),
+          description: 'Our team of expert Flutter app developers at BitsWits use the latest tools and techniques.'
+        },
+        {title:"Web",
+          thumbnail: require('../../assets/slides/Update.png'),
+          description: 'We offer end-to-end web app development company. Our team of skilled web app developers utilizes the latest technologies.'
+        },
+        {title:"Hybrid",
+          thumbnail: require('../../assets/slides/mad_reports_5e254d641d2281579502948 copy.png'),
+          description: 'Our team of expert Flutter app developers at BitsWits use the latest tools and techniques to build cross-platform mobile apps tailored to your business needs.'
+        },
+        {title:"Native",
+          thumbnail: require('../../assets/slides/website-UAE-1-1024x683.jpg'),
+          description: 'We prioritize creating seamless user experiences in cross-platform app development.'
+        },
+        {title:"Native",
+          thumbnail: require('../../assets/slides/website-UAE-1-1024x683.jpg'),
+          description: 'We prioritize creating seamless user experiences in cross-platform app development.'
+        },
+        {title:"Native",
+          thumbnail: require('../../assets/slides/website-UAE-1-1024x683 copy.png'),
+          description: 'We prioritize creating seamless user experiences in cross-platform app development.'
+        }
+      ],
+    }
+  }
+
 
 
 

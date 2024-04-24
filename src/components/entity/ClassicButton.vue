@@ -18,8 +18,8 @@ export default {
 
 <style scoped>
 .btn-standard {
-  height: 55px;
-  background-color: #f32f53;
+  min-height: 55px;
+  background:linear-gradient(90deg, var(--second-color),var(--third-color));
   display: flex;
   align-items: center;
   justify-content: center;
