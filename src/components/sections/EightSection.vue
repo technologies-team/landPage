@@ -1,47 +1,54 @@
 <template>
-  <div >
+  <div    v-motion
+          :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+          :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }">
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-lg-6 col-md-12">
          <h1 class="head-title">
-           Why Choose Us
+           Why Choose Technologies for Your App Development Needs?
          </h1>
-<h2 class="head-title text-start">
-  For Your Mobile App
-  <br>
-  Development Needs?
-</h2>
-<p class="text-start p-font">
 
-  Our<span class="highlighted"> mobile app development services </span>turn your innovative ideas into success stories by
-  <br>crafting apps that stand out in the market. While you<span class="highlighted"> focus on your business</span>, Bitswits will<br>
-  le the technical aspects of developing your app.<br>
+<p class="text-start p-font">
+  At Technologies, we don't just build apps, we craft exceptional user experiences. Here's what sets us apart:
 </p>
           <p class="text-start p-font ">
-            Did you know that a<span class="highlighted"> poorly developed app </span>can negatively impact your brand's reputation?<br>
-            That's a risk you don't want to take. But with Bitswits, there's no need to worry. We ensure
-            <br>your app functions seamlessly and enhances your brand's digital presence.<br>
+            Expertise Across Platforms: We're your one-stop shop for native,
+            hybrid, and cross-platform app development. We'll recommend the perfect
+            solution for your vision.
+          </p>
+
+          <p class="text-start p-font">
+            Unmatched Performance: From blazing-fast Flutter apps to feature-rich native experiences,
+            we prioritize performance and scalability for a seamless user experience
           </p>
           <p class="text-start p-font">
-            Unlike<span class="highlighted"> Mobile app development firms</span>, we don't believe in a one-size-fits-all approach<br>. We understand that the reason behind
-            an underperforming app often lies in its<br> development and user experience. That's where our expertise comes into
-            play. With a <br><span class="highlighted">team of seasoned mobile app developers</span>, the latest technological resources, and a<br> bespoke development strategy.
+            Transparent Communication: We believe in close collaboration and keeping you informed throughout
+            the development process. You'll benefit from agile methodologies and clear communication, ensuring
+            your project stays on track and meets your expectations.
           </p>
           <p class="text-start p-font">
-            Every app we develop undergoes thorough quality checks to ensure <span class="highlighted">IT'S NOT JUST <br>GOOD, BUT GREAT.</span>
-</p>
-          <div class="col-12 ">
-            <classicButton text="Choose Expertise, Choose Bitswits – Let's Get Started" />
+            Long-Term Vision: Our partnership extends beyond launch. We offer comprehensive support and maintenance services to keep your app running smoothly, and our team stays invested in your app's long-term success.
+          </p>
+
+          <div class="col-12  justify-content-center row">
+            <PopupButtonComponent text="Contact Now" @click="modalOpenParent"/>
           </div>
         </div>
-        <div class="col second-space">
-          <ImageComponent></ImageComponent>
-
-          <div class="align-items-center gx-5 d-none d-lg-flex row ">
-            <div class="col-md-4 mb-3 cards-section" v-for="(item, index) in imgItems" :key="index">
-              <SmallCardComponent :title=item.title :description="item.description" :url="item.thumbnail" />
-            </div>
-          </div></div>
+        <div class="col-lg-6 col-md-12 second-space">
+          <ImageComponent  width="100%" :src="src"></ImageComponent>
+</div>
       </div>
 
     </div>
@@ -51,19 +58,25 @@
 
 <script>
 import ImageComponent from "@/components/entity/ImageComponent.vue";
-import SmallCardComponent from "@/components/SmallCardComponent.vue";
-import classicButton from "@/components/entity/ClassicButton.vue";
+import PopupButtonComponent from "@/components/entity/PupupButtonComponent.vue";
 export default {
   name: 'SevenSection',
   props: {
     msg: String,
+    modalOpen:Function
+
+  },
+  methods:{
+    modalOpenParent(){
+      this.modalOpen()
+    },
   },
   components: {
-    classicButton,
-    SmallCardComponent
+    PopupButtonComponent
     ,ImageComponent},
   data(){
     return{
+      src:require('../../assets/section/side-photo-4.svg'),
       imgItems: [
         {title:"Experienced\n" +
               "Professionals",
@@ -125,13 +138,12 @@ export default {
 
 }
 .p-font{
-  font-size: 14px;
+  font-size: 16px;
 }
 .highlighted{
   color:#f32f53;
 }
 .second-space{
-  background-image: url("~@/assets/bg-image.png");
   background-repeat: no-repeat;
   background-size: 100%;
 }

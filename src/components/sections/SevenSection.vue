@@ -1,5 +1,18 @@
 <template>
-  <div >
+  <div   v-motion
+         :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+         :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }">
     <section class="container">
       <div class="row justify-content-center ">
 
@@ -10,21 +23,18 @@
         <h1 class="white font50 f-700 text-center second-title">
           Explore Our App Development Journey
         </h1>
-        <p class=" white font16 f-400 text-center ">Our Work Speaks For Us. See How We Create Powerful, Customer-Centric Mobile Applications
-          <br>
-          For Various Industry Verticals To Help Them Achieve Their Business Objectives.</p>
-        <div class="col-md-12">
-          <div class="container">
+
+        <div class="col-md-10">
             <div class="row justify-content-center">
-              <ImageComponent class="main-photo" :title=title :description="description" :src="thumbnail" />
+              <ImageComponent class="main-photo" width="100%" :title=title :description="description" :src="thumbnail" />
+
+
 
             </div>
-
-          </div>
         </div>
         <div class="col-12 row justify-content-center ">
-          <div class="col-5 ">
-            <classicButton text="Your App, Our Expertise -  Let's Connect " />
+          <div class="col-12 col-lg-5 col-md-8 col-sm-12  row justify-content-center ">
+            <PopupButtonComponent text="Start Your App Development Journey "  @click="modalOpenUpParent"/>
           </div>
         </div>
       </div>
@@ -33,21 +43,28 @@
 </template>
 
 <script>
-import classicButton from './../entity/ClassicButton.vue'
 import ImageComponent from "@/components/entity/ImageComponent.vue";
+import PopupButtonComponent from "@/components/entity/PupupButtonComponent.vue";
 export default {
   name: 'SevenSection',
   props: {
     msg: String,
+    modalOpen:Function
   },
   components: {
+    PopupButtonComponent,
     ImageComponent
-    ,classicButton
+
+  },
+  methods:{
+    modalOpenUpParent() {
+      this.modalOpen(); // Call the parent function passed as a prop
+    },
   },
   data(){
     return{
         title:"process",
-          thumbnail: require('../../assets/process.webp'),
+          thumbnail: require('../../assets/process.svg'),
           description: ''
 
 
@@ -75,7 +92,7 @@ export default {
   -webkit-background-clip: text;
 }
 .main-photo{
-  width: 70%;
+  width: 100%;
   margin: auto;
 }
 </style>

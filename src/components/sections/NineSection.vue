@@ -1,7 +1,20 @@
 <template lang="html">
-  <div class=" container">
+  <div class=" container"    v-motion
+       :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+       :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }">
     <div class="row">
-      <h1 class=" head-title font-weight-600 text-center">
+      <h1 class=" head-title font-weight-600 text-center pb-3">
         Technologies We Work With
       </h1>
 
@@ -40,7 +53,8 @@ export default {
 <style scoped>
 .head-title{
   background-image: linear-gradient(90deg,var(--main-color),var(--second-color),var(--third-color));
-
+-webkit-background-clip: text;
+  color: transparent;
 }
 .font-weight-600{
   font-weight: 700;

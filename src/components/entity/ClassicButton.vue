@@ -1,17 +1,24 @@
 <template>
-  <buuton v-bind:name=name class=" btn btn-primary  btn-standard m-1 ">
+  <button v-bind:name=name class=" btn btn-primary  btn-standard m-1 ">
     {{ text }}
-  </buuton>
+  </button>
 
 </template>
 
 <script>
+
 export default {
   name: 'ClassicComponent',
+  components: {},
   props: {
     text: String,
     fieldName: String,
     placeholder: String,
+  }
+  ,data(){
+    return {
+      isOpen:true
+    }
   }
 }
 </script>

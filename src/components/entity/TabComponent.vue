@@ -1,19 +1,17 @@
 <template lang="html">
-  <div v-if="isActive" class="  d-flex justify-content-center w-75 flex-wrap gap-5">
-    <div  v-for="(imgItem) in imgItems" class="col-2 d-flex flex-column align-items-center gap-3 tab-entity p-4 "
+  <div v-if="isActive" class="  row justify-content-center  flex-wrap gap-5">
+    <div  v-for="(imgItem) in imgItems" class="col d-flex flex-column align-items-center justify-content-between gap-3 tab-entity p-3 "
          :key="imgItem.title">
 
-      <div  >
-        <ImageComponent class="img-fluid" :src="imgItem.thumbnail"></ImageComponent>
+      <div>
+        <ImageComponent width="50px" class="img-fluid" :src="imgItem.thumbnail"></ImageComponent>
       </div>
       <div>
         {{imgItem.title}}
 
       </div>
     </div>
-    <slot>
 
-    </slot>
   </div>
 </template>
 
@@ -49,8 +47,6 @@ export default {
 </script>
 <style scoped>
 .tab-entity{
-  border-radius: 25px;
-  border-top-right-radius: 0px;
-  background-color: var(--main-color);
+
 }
 </style>

@@ -1,19 +1,41 @@
 <script>
-import InputField from "@/components/InputField.vue";
-import classicButton from "@/components/entity/ClassicButton.vue";
-import TextAria from "@/components/TextArea.vue";
+import ContactComponent from "@/components/entity/ContactComponent.vue";
 
 export default {
   name: "TenSection",
-  components: {InputField, TextAria ,classicButton}
+  components: {ContactComponent},
+  props:{
+    modalOpenUp:Function,
+    closeForm:Function
+  },
+  methods:{
+    modalOpenUpParent() {
+      this.modalOpenUp(); // Call the parent function passed as a prop
+    },   closeFormParent() {
+      this.closeForm(); // Call the parent function passed as a prop
+    },
+  }
 }
 </script>
 
 <template>
-  <div >
+  <div    v-motion
+          :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+          :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col text-start bg-color   row justify-content-center first-space">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-5 col-md-12 col-sm-12 text-start bg-color   row justify-content-center first-space m-0 mb-3">
 <div class="row h-100 align-items-center">
 <div>
   <h6 class="maz-font-semibold fw-bold col"> 30 Minutes Strategy Session</h6>
@@ -30,28 +52,14 @@ export default {
 
         </div>
 
-        <div class="col second-space d-flex flex-column gap-3">
-        <h2 class="first-title text-start">Have a Project To Discuss?
-        </h2>
-          <h1 class="second-title text-start">We're Ready!</h1>
-          <InputField class="input-field" fieldName="name" placeholder="name" />
-          <InputField class="input-field" fieldName="name" placeholder="name" />
-          <InputField class="input-field" fieldName="name" placeholder="name" />
-          <InputField class="input-field" fieldName="name" placeholder="name" />
-          <div class="text-area-parent">
-          <TextAria fieldName="name" placeholder="name" />
-          </div>
-          <div class="row justify-content-end">
+        <div class="col-lg-6 col-md-12 col-sm-12  d-flex flex-column gap-3">
 
-            <classicButton  class="col-3" name="submit" text="submit"></classicButton>
-
-            <div class="col-1"></div>
-          </div>
-        </div>
+          <ContactComponent :modalOpenUpParent="modalOpenUpParent" :closeForm="closeFormParent" />
       </div>
 
     </div>
 
+  </div>
   </div>
 </template>
 
@@ -65,16 +73,8 @@ export default {
   border-radius: 25px;
   height: 387px;
 }
-.second-space{
 
-  border: 3px solid var(--main-color);
-  border-radius: 30px;
-  padding: 50px 20px 20px;
-  box-shadow: 0 7px 29px 0 var(--main-color);
-}
-.first-space{
-  margin: 2%;
-}
+
 .text-area-parent{
   margin: 5px;
   width : 95% !important;
@@ -88,6 +88,8 @@ export default {
 }
 .second-title {
   width: max-content;
+  max-width:100%;
+
   background: linear-gradient(90deg, var(--main-color),var(--second-color),var(--third-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color:transparent;

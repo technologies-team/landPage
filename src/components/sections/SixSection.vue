@@ -1,25 +1,38 @@
 <template>
-  <div >
-    <section class="container">
-      <div class="row  ">
-        <h2 class="head-title white font50 f-700 text-center">
-          We Are Recognized By          </h2>
+  <div
+      v-motion
+      :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+      :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }">
+    <section class="container mb-0">
+      <div class="row  gy-5">
+        <h2 class="head-title white font50 f-700 text-center p-2">
+        Trusted By UAE Government Projects</h2>
         <div class="col-md-12">
 
 
-          <p class=" white font16 f-400 text-center">ur mobile app development agency in the UAE offers one of a kind services. Here's what we offer:</p>
 
-          <carousel :items-to-show="4" :wrapAround="true" :transition="3000" :autoplay="1">
+          <carousel :items-to-show="pageSize" :wrapAround="true" :transition="3000" :autoplay="1">
             <slide v-for="(item, index) in imgItems" :key="index">
-              <div class="col-md-2 mb-2 cards-section">
-                <Image :title=item.title :description="item.description" :src="item.thumbnail" />
+              <div class="col-12 col-sm-12 col-md-2 mb-2 cards-section">
+                <Image  width=350px :title=item.title :description="item.description" :src="item.thumbnail" />
               </div>
             </slide>
           </carousel>
         </div>
-        <div class="col-12 row justify-content-center ">
-          <div class="col-5 ">
-          <classicButton text="Your App, Our Expertise -  Let's Connect " />
+        <div class="col-12 row justify-content-center mt-4 ">
+          <div class="col-lg-3 col-md-6 col-sm-8 row w-100 justify-content-center">
+          <PopupButtonComponent text="Let's Connect " pop-up="true" @click="modalOpenParent" />
         </div>
         </div>
       </div>
@@ -28,22 +41,34 @@
 </template>
 
 <script>
-import classicButton from './../entity/ClassicButton.vue'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import Image from "@/components/entity/ImageComponent.vue";
+import PopupButtonComponent from "@/components/entity/PupupButtonComponent.vue";
 
 export default {
+  computed: {
+    pageSize() {
+      if(window.innerWidth >= 1024){
+        return 3;
+      }
+      else if(window.innerWidth >= 768) return 2;
+      else return 1;
+    }
+  },
   name: 'SixSection',
   props: {
     msg: String,
+    modalOpen:Function
   },
   components: {
-    Image,
-    classicButton,Carousel,
+    PopupButtonComponent,
+    Image
+  ,Carousel,
     Slide,
 
   },
+
   data(){
     return{
       value: 0,
@@ -131,6 +156,9 @@ export default {
       this.interval = setInterval(() => {
         this.nextSlide();
       }, 3000); // Adjust the time interval as needed
+    },
+    modalOpenParent(){
+      this.modalOpen()
     },
     nextSlide() {
       this.currentIndex = (this.currentIndex + 1) % this.slides.length;

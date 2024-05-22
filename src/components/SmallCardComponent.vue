@@ -36,9 +36,8 @@ export default {
 .card-content{
   justify-content: center;
   align-items: center;
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   color: var(--light-color);
-  border: 2px solid #3d3d3d;
   border-radius: 25px;
   border-top-right-radius: 0px;
   height: 180px;

@@ -1,59 +1,23 @@
 <template>
     <div>
         <section class="container">
-            <div class="row ">
-              <carousel :items-to-show="3" :wrapAround="true" :transition="3000" :autoplay="1">
-                <slide v-for="(item, index) in imgItems" :key="index">
-                  <div class="col-md-2 mb-3 cards-section">
-                    <Image width="150pxs" height="150px" :title=item.title :description="item.description" :src="item.thumbnail" />
-                  </div>
-                </slide>
 
-              </carousel>
-              <h1 class="head-title text-center">
-                Turn Your App Idea Into An App
-              </h1>
-              <div>
-
-              </div>
-
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-3 px-0">
-                            <InputField fieldName="name" placeholder="name" />
-                        </div>
-                        <div class="col-md-3 px-0">
-                            <InputField fieldName="email" placeholder="email" />
-                        </div>
-                        <div class="col-md-3 px-0">
-                            <InputField fieldName="email" placeholder="email" />
-                        </div>
-                        <div class="col-md-3 px-0">
-                            <ButtonComponent text="SUBMIT" placeholder="email" />
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </div>
 </template>
 
 <script>
-import InputField from './../InputField.vue'
-import ButtonComponent from './../entity/ButtonComponent.vue'
-import Image from "@/components/entity/ImageComponent.vue";
-import { Carousel, Slide } from 'vue3-carousel'
+
 
 export default {
     name: 'SecondSection',
     props: {
-        msg: String,
+      Head: {
+        type:String,
+        default:""
+      },
     },
-    components: {
-      Carousel, Slide, Image,
-
-        InputField, ButtonComponent
-    },
+    components: {},
   data(){
     return{
       imgItems: [

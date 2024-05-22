@@ -4,7 +4,7 @@
       <div class="row  ">
         <div class="col-md-12">
 
-          <h2 class="white font50 f-700 cente">
+          <h2 class="white font50 f-700 text-center p-2">
             We Are Recognized By          </h2>
           <p class=" white font16 f-400 center">ur mobile app development agency in the UAE offers one of a kind services. Here's what we offer:</p>
           <div class="align-items-center gx-5 d-none d-lg-flex row ">
@@ -15,7 +15,8 @@
         </div>
         <div class="col-12 row justify-content-center ">
           <div class="col-5 ">
-            <classicButton text="Your App, Our Expertise -  Let's Connect " />
+            <PopupButtonComponent text="Your App, Our Expertise -  Let's Connect " pop-up="true" @click="modalOpenParent"/>
+
           </div>
         </div>
       </div>
@@ -25,41 +26,49 @@
 
 <script>
 import Image from './../entity/ImageComponent.vue'
-import classicButton from './../entity/ClassicButton.vue'
+import PopupButtonComponent from "@/components/entity/PupupButtonComponent.vue";
 export default {
   name: 'FiveSection',
   props: {
     msg: String,
+    modalOpen:Function
+  },
+  methods:{
+    modalOpenUpParent() {
+      this.modalOpen(); // Call the parent function passed as a prop
+    },
+
   },
   components: {
-    classicButton,Image
+    PopupButtonComponent
+    ,Image
   },
   data(){
     return{
       imgItems: [
         {title:"Android",
-          thumbnail: require('../../assets/card/Android.webp'),
+          thumbnail: require('../../assets/card/Android.svg'),
           description: 'We take Android app development to the next level by following a comprehensive approach, from ideation to launch.'
         },
         {title:"IOS",
-          thumbnail: require('../../assets/card/Apple.webp'),
+          thumbnail: require('../../assets/card/Apple.svg'),
           description: 'We bring your iOS app ideas to life by using our comprehensive approach to development, combining UI/UX app design.'
         },
         {
           title:"Flutter",
-          thumbnail: require('../../assets/card/Flutter.webp'),
+          thumbnail: require('../../assets/card/Flutter.svg'),
           description: 'Our team of expert Flutter app developers at BitsWits use the latest tools and techniques.'
         },
         {title:"Web",
-          thumbnail: require('../../assets/card/Web.webp'),
+          thumbnail: require('../../assets/card/Web.svg'),
           description: 'We offer end-to-end web app development company. Our team of skilled web app developers utilizes the latest technologies.'
         },
         {title:"Hybrid",
-          thumbnail: require('../../assets/card/React.webp'),
+          thumbnail: require('../../assets/card/React.svg'),
           description: 'Our team of expert Flutter app developers at BitsWits use the latest tools and techniques to build cross-platform mobile apps tailored to your business needs.'
         },
         {title:"Native",
-          thumbnail: require('../../assets/card/Native.webp'),
+          thumbnail: require('../../assets/card/Native.svg'),
           description: 'We prioritize creating seamless user experiences in cross-platform app development.'
         }
       ],

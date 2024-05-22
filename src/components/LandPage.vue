@@ -1,60 +1,114 @@
 <template>
   <div>
-    <section >
-      <div style="display: none">
-        <FiveSection :slides="slides" :interval="3000" />
-
+    <section>
+      <div>
+        <MainSection :isOpen="isOpen" @submitForm="submitForm" Head="UAE’s No.1 Mobile App Development Company in Dubai" :modalOpenUp="modalOpenUp" :closeForm="closeForm"
+                     description="We are a 25 years old mobile app development company in Dubai, dedicated to creating simple, easy to use and user-friendly apps. Get 10x more conversions for your business now and let your user fall in love with you through the app!."/>
+        <SixSection  :modalOpen="modalOpen" />
+        <ThirdSection :modalOpen="modalOpen" Head="Get Our App Development Service" :modalOpenUp="modalOpenUp" :closeForm="closeForm"/>
+        <FourthSection :modalOpen="modalOpen" />
+        <FirstSection :modalOpen="modalOpen" />
+        <IndustrySection :modalOpen="modalOpen" />
+        <SevenSection :modalOpen="modalOpen" />
+        <ThirteenSection :modalOpen="modalOpen" />
+        <EightSection :modalOpen="modalOpen" />
+        <NineSection  :modalOpen="modalOpen" />
+        <TenSection  :modalOpenUp="modalOpenUp"  :closeForm="closeForm" />
+        <FAQSection :modalOpen="modalOpen"  />
+        <ModalComponent :isShow="isShow"  :modalCloseUp="modalCloseUp" :header="header" :message="message" :button-text="buttonText" />
+        <ModalContactComponent :is-open="isOpen" :modalOpenUp="modalOpenUp" :closeForm="closeForm"  />
 
       </div>
-
-      <MainSection :slides="slides" :interval="3000" Head="Mobile Apps"
-      description="We are a 25 years old mobile app development company in Dubai, dedicated to creating simple, easy to use and user-friendly apps. Get 10x more conversions for your business now and let your user fall in love with you through the app!."
-      />
-      <SecondSection :slides="slides" :interval="3000" />
-      <ThirdSection :slides="slides" :interval="3000" />
-      <FourthSection :slides="slides" :interval="3000" />
-      <SixSection :slides="slides" :interval="3000" />
-      <SevenSection :slides="slides" :interval="3000" />
-      <EightSection :slides="slides" :interval="3000" />
-      <NineSection :slides="slides" :interval="3000" />
-      <TenSection :slides="slides" :interval="3000" />
-      <FirstSection  :slides="slides" :interval="3000"/>
-      <FQASection :slides="slides" :interval="3000" />
-
     </section>
   </div>
 </template>
-
 <script>
 
-import SecondSection from './sections/SecondSection.vue';
 import MainSection from './sections/MainSection.vue';
 import ThirdSection from './sections/ThirdSection.vue';
 import FourthSection from './sections/FourthSection.vue';
 import SixSection from './sections/SixSection.vue';
 import SevenSection from './sections/SevenSection.vue';
 import NineSection from './sections/NineSection.vue';
-import FiveSection from './sections/FiveSection.vue';
-import FQASection from './sections/FQASection.vue';
+import FAQSection from './sections/FAQSection.vue';
 import EightSection from './sections/EightSection.vue';
 import TenSection from "@/components/sections/TenSection.vue";
 import FirstSection from "@/components/sections/FirstSection.vue";
+import ThirteenSection from "@/components/sections/ThirteenSection.vue";
+import IndustrySection from "@/components/sections/IndustrySection.vue";
+import ModalComponent from "@/components/entity/ModalComponent.vue";
+import axios from "axios";
+import {provide} from "vue";
+import ModalContactComponent from "@/components/entity/ModalContactComponent.vue";
 export default {
   name: 'LandPage',
   props: {
     msg: String,
   },
   components: {
+    ModalContactComponent,
+    ModalComponent,
+
+    IndustrySection,
+    ThirteenSection,
     FirstSection,
     TenSection,
     MainSection,
-    SecondSection,ThirdSection,FourthSection,FiveSection,SixSection,SevenSection,FQASection,EightSection,NineSection
+    ThirdSection,FourthSection,SixSection,SevenSection,FAQSection,EightSection,NineSection
   },
 
   data() {
     return {
+
+      header:"Success!",
+      message:"We received your application and will contact you shortly.",
+      buttonText:"confirm",
+      isOpen:false,
+      isShow:false,
       slides: ['Slide 1', 'Slide 2', 'Slide 3','Slide 4', 'Slide 25', 'Slide 6'] // Add your slide content here
     };
+  }
+,  setup() {
+  const modalclose = () => {
+    console.log("here")
+    this.isShow=false
+
+  };
+
+  provide('handleEvent', modalclose);
+
+  return {};
+},
+  methods: {
+    modalOpen(){
+      this.isOpen=true;
+
+      },
+    modalCloseUp(){
+      console.log("here parents")
+      this.isOpen=false;
+      this.isShow=false;
+
+    },    modalOpenUp(){
+      console.log("here parents")
+      this.isShow=true;
+
+    },   closeForm(){
+      console.log("here parents")
+      this.isOpen=false;
+
+    },
+    submitForm() {
+      axios.post('/contact', this.formData)
+          .then(response => {
+            // Handle success
+            console.log(response.data);
+          })
+          .catch(error => {
+            // Handle error
+            console.error(error);
+          });
+    }
   }
 }
 
@@ -65,7 +119,7 @@ export default {
 
 .container{
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 
@@ -77,22 +131,11 @@ export default {
 }
 
 .head-title {
-  font-size: 58px;
   text-align: start;
   font-weight: 700;
 }
 
-.title-desc {
-font-size: 65px;
-text-align: start;
 
-  font-family: sans-serif;
-  background: linear-gradient(to right, rgba(255, 215, 255, 0) 0%, rgba(225, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0) 61%), linear-gradient(rgb(97, 183, 217) 52%, rgb(224, 246, 255) 60%, rgb(78, 99, 132) 61%);
-  /* you rgba(92, 45, 92, 0)  /*add this line, it defines how far the background should extend within an element, here we set it to text */
-  -webkit-background-clip: text;
-  /* add this line, for browsers compatibility */
-  -webkit-text-fill-color: transparent;
-}
 .description{
   margin-top: 30px;
   text-align:start;

@@ -6,12 +6,20 @@
 </template>
 
 <script>
+
 export default {
     name: 'ButtonComponent',
+  components: {},
     props: {
         text: String,
         fieldName: String,
         placeholder: String,
+        type:String
+    },
+    data(){
+      return {
+        isOpen:false
+      }
     }
 }
 </script>

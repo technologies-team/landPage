@@ -1,8 +1,25 @@
 <template>
-  <div>
+  <div class="main-section">
+    <div
+        v-motion
+        :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+        :visibleOnce="{
+      opacity: 1,
+      y: 0,
+        transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 300,
+    },
+    }"
+
+    >
   <section class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-6 col-md-12 col-sm-12 ">
         <h1 class="head-title">
           {{ Head }}
         </h1>
@@ -10,69 +27,55 @@
         <div class="description">
           {{description}}
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="d-flex flex-row">
-          <InputField fieldName="name" placeholder="name" />
-          <InputField fieldName="email" placeholder="email" />
-        </div>
-        <div class="col-md-12">
-          <div class="d-flex flex-row" >
-            <MazPhoneNumberInput
-                v-model="phoneNumber"
-                v-model:country-code="countryCode"
-                show-code-on-list
-                :noFlags="true"
-                :preferred-countries="['UA', 'BE', 'DE', 'US', 'GB']"
-                :ignored-countries="['SY']"
-                @update="results = $event"
-            />
-            <div style="width: 500px; margin: 20px auto;">
-
-            </div>
-            <SelectorComponent class="col-md-6"></SelectorComponent>
+        <div class="  row  mt-5 ">
+          <div class=" col-6 col-lg-3 col-md-6 col-sm-6 col-s mb-3 d-flex justify-content-center" v-for="(item, index) in imgItems" :key="index">
+            <Image :width=item.width height="auto" title="name" :description="item.description" :src="item.thumbnail" />
           </div>
-
-        <code>
-        </code>
-        </div>
-
-        <div>
-          <TextArea fieldName="message" placeholder="Message" />
-
-        </div>
-        <div class="row pr-30"><div class=" col-md-1 mt-3"></div>
-          <div class=" col-md-3 mt-3"> <SecondButtonComponent class="submit-button" text="submit"/></div>
-
         </div>
       </div>
+      <div class="col-lg-6 col-md-12 col-sm-12">
+
+        <ContactComponent :modalOpenUpParent="modalOpenUpParent" :closeForm="closeFormParent"/>
+      </div>
+
     </div>
+    <div class="row pr-30"><div class=" col-md-1 mt-3"></div></div>
 
   </section>
+      </div>
   </div>
 </template>
 <script >
-import InputField from './../InputField.vue'
-import TextArea from './../TextArea.vue'
-import SelectorComponent from './../entity/SelectorComponent.vue';
+
 
 import "vue-phone-number-input/dist/vue-phone-number-input.css";
-import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
-import SecondButtonComponent from "@/components/entity/SecondButtonComponent.vue";
+
+import Image from "@/components/entity/ImageComponent.vue";
+import ContactComponent from "@/components/entity/ContactComponent.vue";
 export default {
   name: 'MainSection',
   props: {
     Head: String,
     Title: String,
     description: String,
-    number:String
+    number:String,
+    modalOpenUp:Function,
+    closeForm:Function
   },
   components: {
+    ContactComponent,
+    Image
 
-    SecondButtonComponent,
-    InputField,TextArea,SelectorComponent,MazPhoneNumberInput
 
   },
+  methods:{
+    modalOpenUpParent() {
+      this.modalOpenUp(); // Call the parent function passed as a prop
+    },   closeFormParent() {
+      this.closeForm(); // Call the parent function passed as a prop
+    },
+  },
+
 
   data() {
     return {
@@ -90,18 +93,60 @@ export default {
             example: "Example:"
           }
         }
-      }
+      },
+      imgItems: [
+
+        {title:"IOS",
+          thumbnail: require('../../assets/slides/073e304b0da1a3516e43c41ee0e53ed1.png'),
+          description: 'We bring your iOS app ideas to life by using our comprehensive approach to development, combining UI/UX app design.'
+     , width:"100px"
+        },
+        {
+          title:"Flutter",
+          thumbnail: require('../../assets/slides/mad_reports_5e254d641d2281579502948.webp'),
+          description: 'Our team of expert Flutter app developers at BitsWits use the latest tools and techniques.'
+          , width:"100px"
+        },
+        {title:"Web",
+          thumbnail: require('../../assets/slides/Update.png'),
+          description: 'We offer end-to-end web app development company. Our team of skilled web app developers utilizes the latest technologies.'
+          , width:"100px"
+        },
+
+
+        {title:"Native",
+          thumbnail: require('../../assets/slides/Top.png'),
+          description: 'We prioritize creating seamless user experiences in cross-platform app development.'
+          , width:"150px"
+        }
+
+
+      ],
     };
   }
 }
-</script>
-<style>
+</script >
+<style scoped>
+.main-section{
+  background-image: url('/src/assets/section/full-photo-1.jpg') ;
+  background-size: cover;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+
+}
+.description{
+  color:var(--main-color);
+}
 .country-phone-input .dropdown:focus {
   outline: none;
   color: grey;
 }
 .head-title{
-  width: max-content;
+
+;
   background: linear-gradient(90deg, var(--main-color), var(--second-color), var(--third-color));
   -webkit-background-clip: text;
   color: transparent;
@@ -113,4 +158,38 @@ export default {
 
 
 }
+.description{
+  font-size: 25px;
+}
+
+.f45{
+  font-size: 35px;
+}
+.bg-color{
+  background-color: var(--main-color);
+  color:var(--light-color);
+  border-radius: 25px;
+  height: 387px;
+}
+
+
+.text-area-parent{
+  margin: 5px;
+  width : 95% !important;
+}
+.input-field{
+  height: 55px;
+  border: 1px solid var(--main-color);
+  background-color: var(--main-color);
+  border-radius: 13px;
+  color: var(--light-color);
+}
+.second-title {
+  width: max-content;
+  max-width:100%;
+
+  color: var(--main-color);
+  font-weight: 700;
+}
+
 </style>
